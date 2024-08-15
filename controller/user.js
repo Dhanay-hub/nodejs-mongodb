@@ -3,6 +3,10 @@ const User = require('../models/user');
 const Role = require('../models/role');
 const bcrypt = require('bcryptjs');
 
+const jwt = require('jsonwebtoken');
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
+
 // Signup API
 exports.signUp = async (req, res) => {
     try {
@@ -30,9 +34,11 @@ exports.logIn = async (req, res) => {
         if (!user) return res.status(404).json({ message: 'User not found' });
 
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+        if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' })
 
-        return res.status(200).json({ message: 'Login successful', user });
+        const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
+
+        return res.status(200).json({ message: 'Login successful', user, token });
     } catch (err) {
         return res.status(500).json({ error: err.message });
     }
