@@ -20,16 +20,29 @@ This project is a backend application built with Node.js, Express, and MongoDB. 
 
 nodejs-mongodb-backend/
 
+    ├── config/
+        ├── default.json
+        └── development.json
+    ├── controller/
+        ├── role.js
+        └── user.js
+    ├── middleware/
+        └── error.js
     ├── models/
         ├── Role.js
         └── User.js
-
     ├── routes/
         ├── role.js
         └── user.js
+    ├── startup/
+        ├── db.js
+        ├── logging.js
+        └── routes.js
     ├── app.js
+    ├── Readme.md
     ├── package.json
-    └── .env
+    ├── package-lock.json
+    └── .env.example
 
 ## Getting Started
 
