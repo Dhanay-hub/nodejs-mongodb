@@ -1,0 +1,13 @@
+# dependencies
+/node_modules
+package-lock.json
+# production
+/build
+
+.env
+logfile.log
+./uncaughtExceptions.log
+.DS_Store
+email_templates
+./uncaughtExceptions.log
+test
